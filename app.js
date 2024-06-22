@@ -24,6 +24,7 @@ database.once('connected', () => {
 // App
 var indexRouter = require('./routes/works');
 var profileRouter = require('./routes/profiles');
+var projectRouter = require('./routes/projects');
 var usersRouter = require('./routes/users'); 
 
 var app = express();
@@ -39,6 +40,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api', indexRouter);
+app.use('/api', projectRouter);
 app.use('/api', profileRouter);
 app.use('/api/users', usersRouter);
 
