@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const Model = require('../models/profileModel');
+const Model = require('../models/Profile');
 
 //Post Method
 router.post('/profile', async (req, res) => {
