@@ -26,8 +26,9 @@ var indexRouter = require('./routes/works');
 var profileRouter = require('./routes/profiles');
 var projectRouter = require('./routes/projects');
 var feedbackRouter = require('./routes/feedback'); 
-var usersRouter = require('./routes/users'); 
 var skillRouter = require('./routes/skills'); 
+var educationRouter = require('./routes/educations'); 
+var usersRouter = require('./routes/users'); 
 
 var app = express();
 
@@ -53,6 +54,7 @@ app.use('/api', projectRouter);
 app.use('/api', profileRouter);
 app.use('/api/feedback', feedbackRouter);
 app.use('/api/skill', skillRouter);
+app.use('/api/education', educationRouter);
 app.use('/api/user', usersRouter);
 
 // catch 404 and forward to error handler
