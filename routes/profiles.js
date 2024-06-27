@@ -11,7 +11,7 @@ router.post('/profile', profile_controller.profile_post);
 router.get('/profile', profile_controller.profile_get_all);
 
 //Update by ID Method
-router.patch('/profile/:id', profile_controller.profile_get_by_id);
+router.patch('/profile/:id', profile_controller.profile_update);
 
 //Delete by ID Method
 router.delete('/profile/:id', profile_controller.profile_delete);
