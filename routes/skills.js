@@ -1,75 +1,22 @@
 var express = require('express');
 var router = express.Router();
 
-const Model = require('../models/Skill');
+//Controller
+const skill_controller = require('../controllers/skillController');
 
 //Post Method
-router.post('/', async (req, res) => {
-  const data = new Model({
-    name: req.body.name,
-    description: req.body.description,
-    icon: req.body.icon,
-  })
-
-  try {
-    const dataToSave = await data.save();
-    res.status(200).json(dataToSave)
-  }
-  catch (error) {
-    res.status(400).json({message: error.message})
-  }
-});
+router.post('/', skill_controller.skill_post);
 
 //Get all Method
-router.get('/all', async (req, res) => {
-  try{
-    const data = await Model.find();
-    res.json(data)
-  }
-  catch(error){
-    res.status(500).json({message: error.message})
-  }
-});
+router.get('/all', skill_controller.skill_get_all);
 
 //Get by ID Method
-router.get('/:id', async (req, res) => {
-  try {
-    const data = await Model.findById(req.params.id);
-    res.json(data)
-  }
-  catch (error) {
-    res.status(500).json({ message: error.message })
-  }
-});
+router.get('/:id', skill_controller.skill_get_by_id);
 
 //Update by ID Method
-router.patch('/:id', async (req, res) => {
-  try {
-      const id = req.params.id;
-      const updatedData = req.body;
-      const options = { new: true };
-
-      const result = await Model.findByIdAndUpdate(
-          id, updatedData, options
-      )
-
-      res.send(result)
-  }
-  catch (error) {
-      res.status(400).json({ message: error.message })
-  }
-});
+router.patch('/:id', skill_controller.skill_update);
 
 //Delete by ID Method
-router.delete('/:id', async (req, res) => {
-  try {
-      const id = req.params.id;
-      const data = await Model.findByIdAndDelete(id)
-      res.send(`Document with ${data.name} has been deleted..`)
-  }
-  catch (error) {
-      res.status(400).json({ message: error.message })
-  }
-});
+router.delete('/:id', skill_controller.skill_delete);
 
 module.exports = router;
